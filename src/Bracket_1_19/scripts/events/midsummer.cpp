@@ -46,6 +46,9 @@ public:
         if (!player)
             return true;
 
+        if (sConfigMgr->GetOption<bool>("ProgressionSystem.Bracket_1_19", false) && player->GetLevel() < 65)
+            return true;
+
         // Not allowed in RDF/LFG
         if (player->GetGroup() && player->GetGroup()->isLFGGroup())
         {

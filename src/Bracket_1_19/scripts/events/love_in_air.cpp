@@ -40,22 +40,25 @@ public:
     {
         if (action == 100)
         {
-            bool _canTeleport = true;
-
             if (Group* group = player->GetGroup())
             {
                 if (group->GetLeaderGUID() == player->GetGUID())
                 {
                     for (GroupReference* itr = group->GetFirstMember(); itr != nullptr; itr = itr->next())
                     {
-                        if (Player* groupMember = itr->GetSource())
+                        Player* groupMember = itr->GetSource();
+                        if (!groupMember || groupMember->GetLevel() < 55)
                         {
-                            groupMember->TeleportTo(WorldLocation(33, -220.035690f, 2145.058105f, 90.624962f, 2.792244f));
+                            CloseGossipMenuFor(player);
+                            return true;
                         }
                     }
 
-                    if (_canTeleport)
-                        AddGossipItemFor(player, GOSSIP_ICON_CHAT, "Send us to Shadowfang Keep.", GOSSIP_SENDER_MAIN, 100);
+                    for (GroupReference* itr = group->GetFirstMember(); itr != nullptr; itr = itr->next())
+                    {
+                        if (Player* groupMember = itr->GetSource())
+                            groupMember->TeleportTo(WorldLocation(33, -220.035690f, 2145.058105f, 90.624962f, 2.792244f));
+                    }
                 }
             }
 

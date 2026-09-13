@@ -32,22 +32,25 @@ public:
     {
         if (action == 100)
         {
-            bool _canTeleport = true;
-
             if (Group* group = player->GetGroup())
             {
                 if (group->GetLeaderGUID() == player->GetGUID())
                 {
                     for (GroupReference* itr = group->GetFirstMember(); itr != nullptr; itr = itr->next())
                     {
-                        if (Player* groupMember = itr->GetSource())
+                        Player* groupMember = itr->GetSource();
+                        if (!groupMember || (sConfigMgr->GetOption<bool>("ProgressionSystem.Bracket_1_19", false) && groupMember->GetLevel() < 55))
                         {
-                            groupMember->TeleportTo(WorldLocation(230, 908.184814f, -160.890640f, -49.760090f, 2.042036f));
+                            CloseGossipMenuFor(player);
+                            return true;
                         }
                     }
 
-                    if (_canTeleport)
-                        AddGossipItemFor(player, GOSSIP_ICON_CHAT, "Send us to the Grim Guzzler.", GOSSIP_SENDER_MAIN, 100);
+                    for (GroupReference* itr = group->GetFirstMember(); itr != nullptr; itr = itr->next())
+                    {
+                        if (Player* groupMember = itr->GetSource())
+                            groupMember->TeleportTo(WorldLocation(230, 908.184814f, -160.890640f, -49.760090f, 2.042036f));
+                    }
                 }
             }
 

@@ -1,5 +1,6 @@
 SET @QUESTID = 50000;
 DELETE FROM `quest_template` WHERE `ID` = @QUESTID;
+DELETE FROM `quest_template_addon` WHERE `ID` = @QUESTID;
 
 DELETE FROM `item_loot_template` WHERE `entry` = 54516 AND `item` IN (49426, 49128, 49126);
 INSERT INTO `item_loot_template` (`Entry`, `Item`, `Reference`, `Chance`, `QuestRequired`, `LootMode`, `GroupId`, `MinCount`, `MaxCount`, `Comment`) VALUES

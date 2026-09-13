@@ -19,3 +19,6 @@ UPDATE `item_template` SET `RequiredLevel` = 75 WHERE (`entry` = 35723);
 
 UPDATE `creature_template` SET `MaxLevel` = 80, `MinLevel` = 80 WHERE `entry` IN (25755, 25756, 25757, 26340, 26341, 26342, 25865, 26339, 40446);
 UPDATE `creature_template` SET `MaxLevel` = 82, `MinLevel` = 82 WHERE `entry` IN (25740, 26338);
+
+-- Restore AzerothCore's WotLK-era Ahune summon script.
+UPDATE `gameobject_template` SET `ScriptName` = 'go_ahune_ice_stone' WHERE `entry` = 187882;
