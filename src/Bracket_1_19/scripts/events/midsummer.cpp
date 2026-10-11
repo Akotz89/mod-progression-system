@@ -40,7 +40,7 @@ class go_ahune_ice_stone_1_19 : public GameObjectAI
 {
 public:
     go_ahune_ice_stone_1_19(GameObject* go) : GameObjectAI(go), _instance(go->GetInstanceScript()) { }
- 
+
     bool GossipSelect(Player* player, uint32 /*sender*/, uint32 /*action*/) override
     {
         if (!player)

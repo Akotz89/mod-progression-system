@@ -23,6 +23,34 @@ ProgressionSystem.LoadScripts = 1
 ProgressionSystem.LoadDatabase = 1
 
 #
+#    ProgressionSystem.SharedPhaseGate.Enable
+#        Description: Enable the shared (realm-wide) progression authority.
+#        Default:     0 - Disabled; a configured gate fails closed until the
+#                     exact phase profile below is present.
+#                     1 - Enforce the shared phase through core action hooks.
+#
+
+ProgressionSystem.SharedPhaseGate.Enable = 0
+
+#
+#    ProgressionSystem.SharedPhaseGate.CurrentPhase
+#        Description: Exact phase identifier owned by this gate. The initial
+#                     supported profile is 1_19 (levels 1 through 19).
+#
+
+ProgressionSystem.SharedPhaseGate.CurrentPhase = ""
+
+#
+#    ProgressionSystem.SharedPhaseGate.AdminBypass
+#        Description: Allow an explicitly GM-enabled, non-Playerbot session to
+#                     inspect future content. Keep disabled in production;
+#                     this is not an alternate progression owner.
+#        Default:     0 - Fail closed
+#
+
+ProgressionSystem.SharedPhaseGate.AdminBypass = 0
+
+#
 #    ProgressionSystem.ReapplyUpdates
 #        Description: Always reapply every SQL file on start up. Warning: impacts start up times.
 #        Default:     1 - Enabled
