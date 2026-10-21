@@ -15,6 +15,7 @@
  * with this program. If not, see <http://www.gnu.org/licenses/>.
  */
 
+#include "GameEventMgr.h"
 #include "GameObjectAI.h"
 #include "Group.h"
 #include "LFGMgr.h"
@@ -43,11 +44,19 @@ public:
 
     bool GossipSelect(Player* player, uint32 /*sender*/, uint32 /*action*/) override
     {
-        if (!player)
+        if (!player || _started || !_instance)
             return true;
 
-        if (sConfigMgr->GetOption<bool>("ProgressionSystem.Bracket_1_19", false) && player->GetLevel() < 65)
+        if (!sConfigMgr->GetOption<bool>("ProgressionSystem.Bracket_1_19", false) || player->GetLevel() < 65 ||
+            !IsHolidayActive(HOLIDAY_FIRE_FESTIVAL))
             return true;
+
+        if (sConfigMgr->GetOption<bool>("ProgressionSystem.SharedPhaseGate.Enable", false))
+        {
+            ProgressionSystem::SharedPhaseSnapshot const phase = ProgressionSystem::GetSharedPhaseSnapshot();
+            if (!phase.enabled || !phase.policyValid || phase.phaseId != "1_19" || phase.phaseLevelCeiling != 19)
+                return true;
+        }
 
         // Not allowed in RDF/LFG
         if (player->GetGroup() && player->GetGroup()->isLFGGroup())
@@ -61,11 +70,17 @@ public:
             return true;
         }
 
+        Creature* ahuneBunny = _instance->GetCreature(DATA_AHUNE_BUNNY);
+        if (!ahuneBunny || !ahuneBunny->IsAlive() || !ahuneBunny->AI())
+            return true;
+
+        // Admit the native event once before consuming quest items or crediting
+        // the summon. The world-thread callback schedules the existing event.
+        _started = true;
+        ClearGossipMenuFor(player);
+        ahuneBunny->AI()->DoAction(ACTION_START_EVENT);
         player->DestroyItemCount(ITEM_MAGMA_TOTEM, 1, true, false);
         player->AreaExploredOrEventHappens(QUEST_SUMMON_AHUNE); //auto rewarded
-
-        if (Creature* ahuneBunny = _instance->GetCreature(DATA_AHUNE_BUNNY))
-            ahuneBunny->AI()->DoAction(ACTION_START_EVENT);
 
         if (Creature* luma = _instance->GetCreature(DATA_LUMA_SKYMOTHER))
             luma->CastSpell(player, SPELL_SUMMONING_RHYME_AURA, true);
@@ -76,6 +91,7 @@ public:
 
 private:
     InstanceScript* _instance;
+    bool _started = false;
 };
 
 class global_midsummer_tuning_script : public GlobalScript

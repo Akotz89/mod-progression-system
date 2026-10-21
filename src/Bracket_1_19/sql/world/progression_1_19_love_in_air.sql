@@ -36,8 +36,6 @@ INSERT INTO `conditions` (`SourceTypeOrReferenceId`, `SourceGroup`, `SourceEntry
 (1, 10901, 22206, 0, 0, 12, 0, 8, 0, 0, 0, 0, 0, '', 'Love is in the Air - Lorekeeper Polkelt - Bouquet of Red Roses'),
 (1, 11488, 22206, 0, 0, 12, 0, 8, 0, 0, 0, 0, 0, '', 'Love is in the Air - Illyanna Ravenoak - Bouquet of Red Roses');
 
-UPDATE `creature_template` SET `minlevel` = 62, `maxlevel` = 62 WHERE `entry` IN (36565, 36296, 36272, 36568);
-UPDATE `creature_template` SET `minlevel` = 60, `maxlevel` = 60 WHERE `entry` = 36568; -- crazed apothecary
 UPDATE `creature_template` SET `lootid` = 0 WHERE `entry` = 36296;
 
 UPDATE `item_template` SET `RequiredLevel` = 40 WHERE `entry` = 50250; -- love rocket

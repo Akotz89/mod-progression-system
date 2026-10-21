@@ -1,4 +1,3 @@
-UPDATE `creature_template` SET `minlevel` = 60, `maxlevel` = 60 WHERE `entry` IN (23872, 23795, 26776, 26764, 26822);
 UPDATE `creature_template` SET `lootid` = 0 WHERE `entry` = 23872;
 
 DELETE FROM `item_loot_template` WHERE `Item` IN (48663, 49120, 49426) AND `Entry` = 54535;

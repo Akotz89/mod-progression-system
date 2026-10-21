@@ -120,6 +120,8 @@ ProgressionSystem.Bracket_70_5    = 0
 ProgressionSystem.Bracket_70_6_1  = 0
 # Sunwell Plateau, Arena Season 4
 ProgressionSystem.Bracket_70_6_2  = 0
+# Pre-Wrath trainer changes (optional; disabled by default)
+ProgressionSystem.Bracket_70_6_3  = 0
 # 71-74 Dungeons
 ProgressionSystem.Bracket_71_74   = 0
 # 75-79 Dungeons

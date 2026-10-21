@@ -432,3 +432,14 @@ void AddSC_progression_system_shared_phase_gate()
 {
     new progression_system_shared_phase_gate();
 }
+
+ProgressionSystem::QuestSourcePolicyFacts ProgressionSystem::ReadQuestSourcePolicy(uint32 questId)
+{
+    QuestSourcePolicyFacts result;
+    Quest const* quest = sObjectMgr->GetQuestTemplate(questId);
+    result.templateKnown = quest != nullptr;
+    result.configured = IsGateConfigured();
+    result.ready = IsGateReady();
+    result.templateAllowed = IsAllowedQuest(quest);
+    return result;
+}

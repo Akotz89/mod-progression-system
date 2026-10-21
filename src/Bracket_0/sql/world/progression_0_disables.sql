@@ -1,5 +1,5 @@
 -- 1-19 level range
-DELETE FROM `disables` WHERE `entry` IN (33, 36, 43, 48, 389);
+DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` IN (33, 36, 43, 48, 389);
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES 
 (2, 33, 1, "", "", "Shadowfang Keep"),
 (2, 36, 1, "", "", "Deadmines"),
@@ -8,28 +8,28 @@ INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, 
 (2, 389, 1, "", "", "Ragefire Chasm");
 
 -- 20-29 level range
-DELETE FROM `disables` WHERE `entry` IN (34, 47, 90);
+DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` IN (34, 47, 90);
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES 
 (2, 34, 1, "", "", "Stormwind Stockades"),
 (2, 47, 1, "", "", "Razorfen Kraul"),
 (2, 90, 1, "", "", "Gnomeregan");
 
 -- 30-39 level range
-DELETE FROM `disables` WHERE `entry` IN (70, 129, 189);
+DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` IN (70, 129, 189);
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES 
 (2, 70, 1, "", "", "Uldaman"),
 (2, 129, 1, "", "", "Razorfen Downs"),
 (2, 189, 1, "", "", "Scarlet Monastery - All wings");
 
 -- 40-49 level range
-DELETE FROM `disables` WHERE `entry` IN (109, 209, 349);
+DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` IN (109, 209, 349);
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES 
 (2, 109, 1, "", "", "Sunken Temple Dungeon"),
 (2, 209, 1, "", "", "Zul'Farrak (ZF)"),
 (2, 349, 1, "", "", "Maraudon - All wings");
 
 -- 50-59 level range
-DELETE FROM `disables` WHERE `entry` IN (230, 429, 229, 289, 329);
+DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` IN (230, 429, 229, 289, 329);
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES 
 (2, 230, 1, "", "", "Blackrock Depths (BRD)"),
 (2, 429, 1, "", "", "Dire Maul - All wings"),
@@ -38,28 +38,28 @@ INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, 
 (2, 329, 1, "", "", "Stratholme");
 
 -- 60 level range - Tier 1
-DELETE FROM `disables` WHERE `entry` = 409;
+DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` = 409;
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES 
 (2, 409, 1, "", "", "Molten Core");
 
 -- 60 level range - Tier 2
-DELETE FROM `disables` WHERE `entry` = 469;
+DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` = 469;
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES 
 (2, 469, 1, "", "", "Blackwing Lair");
 
 -- 60 level range - Zul’Gurub
-DELETE FROM `disables` WHERE `entry` = 309;
+DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` = 309;
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES 
 (2, 309, 1, "", "", "Zul’Gurub");
 
 -- 60 level range - Ahn’Qiraj
-DELETE FROM `disables` WHERE `entry` IN (509, 531);
+DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` IN (509, 531);
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES 
 (2, 509, 1, "", "", "Ahn’Qiraj Ruins"),
 (2, 531, 1, "", "", "Ahn’Qiraj Temple");
 
 -- 61-64 level range
-DELETE FROM `disables` WHERE `entry` IN (542, 543, 546, 547, 557);
+DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` IN (542, 543, 546, 547, 557);
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES 
 (2, 542, 3, "", "", "The Blood Furnace"),
 (2, 543, 3, "", "", "Hellfire Ramparts"),
@@ -68,7 +68,7 @@ INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, 
 (2, 557, 3, "", "", "Mana Tombs");
 
 -- 65-69 level range
-DELETE FROM `disables` WHERE `entry` IN (269, 556, 558, 560);
+DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` IN (269, 556, 558, 560);
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES 
 (2, 269, 3, "", "", "The Black Morass"),
 (2, 556, 3, "", "", "Sethekk Halls"),
@@ -76,7 +76,7 @@ INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, 
 (2, 560, 3, "", "", "The Escape from Durnholde");
 
 -- 70 level range
-DELETE FROM `disables` WHERE `entry` IN (532, 534, 540, 544, 545, 548, 550, 552, 553, 554, 555, 564, 565, 568, 580, 585);
+DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` IN (532, 534, 540, 544, 545, 548, 550, 552, 553, 554, 555, 564, 565, 568, 580, 585);
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES 
 (2, 532, 1, "", "", "Karazhan"),
 (2, 534, 1, "", "", "Hyjal Summit"),
@@ -96,7 +96,7 @@ INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, 
 (2, 585, 3, "", "", "Magisters' Terrace");
 
 -- 71-74 level range
-DELETE FROM `disables` WHERE `entry` IN (574, 576, 600, 601, 619);
+DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` IN (574, 576, 600, 601, 619);
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES 
 (2, 574, 3, "", "", "Utgarde Keep"),
 (2, 576, 3, "", "", "The Nexus"),
@@ -105,7 +105,7 @@ INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, 
 (2, 619, 3, "", "", "Ahn’kahet: The Old Kingdom");
 
 -- 75-79 level range
-DELETE FROM `disables` WHERE `entry` IN (575, 578, 595, 599, 602, 604, 608);
+DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` IN (575, 578, 595, 599, 602, 604, 608);
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES 
 (2, 575, 3, "", "", "Utgarde Pinnacle"),
 (2, 578, 3, "", "", "The Oculus"),
@@ -116,7 +116,8 @@ INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, 
 (2, 608, 3, "", "", "Violet Hold");
 
 -- 80 level range
-DELETE FROM `disables` WHERE `entry` IN (249, 533, 603, 615, 616, 624, 631, 632, 649, 650, 658, 668, 724, 13276);
+DELETE FROM `disables` WHERE `sourceType` = 2 AND `entry` IN (249, 533, 603, 615, 616, 624, 631, 632, 649, 650, 658, 668, 724);
+DELETE FROM `disables` WHERE `sourceType` = 4 AND `entry` = 13276;
 INSERT INTO `disables` (`sourceType`, `entry`, `flags`, `params_0`, `params_1`, `comment`) VALUES 
 (2, 249, 3, "", "", "Onyxia Lair"),
 (4, 13276, 0, "", "", "Onyxia Lair LK Statistic"),

@@ -25,6 +25,12 @@ struct SharedPhaseSnapshot
 // A read-only view of the exact upstream bracket configuration. The adapter
 // does not authorize player actions and does not dispatch PlayerScript hooks.
 [[nodiscard]] SharedPhaseSnapshot GetSharedPhaseSnapshot();
+struct QuestSourcePolicyFacts
+{
+    bool templateKnown{false}, configured{false}, ready{false}, templateAllowed{false};
+};
+// Static source/template policy only; never an actor CanTake/Add/Reward result or script dispatch.
+[[nodiscard]] QuestSourcePolicyFacts ReadQuestSourcePolicy(uint32 questId);
 }
 
 #define PROGRESSION_BRACKET_MAX 39

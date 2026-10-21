@@ -28,8 +28,3 @@ INSERT INTO `gameobject_loot_template` (`Entry`, `Item`, `Chance`, `GroupId`, `M
 UPDATE `quest_template` SET `MinLevel` = 65 WHERE (`ID` = 11972);
 UPDATE `item_template` SET `RequiredLevel` = 65 WHERE (`entry` = 35723);
 
-UPDATE `creature_template` SET `MaxLevel` = 70, `MinLevel` = 70 WHERE `entry` IN (25755, 25756, 25757, 26340, 26341, 26342, 25865, 26339, 40446);
-UPDATE `creature_template` SET `MaxLevel` = 72, `MinLevel` = 72 WHERE `entry` IN (25740, 26338);
-
--- Use the bracket-aware summon guard while the TBC-era encounter tuning is active.
-UPDATE `gameobject_template` SET `ScriptName` = 'go_ahune_ice_stone_1_19' WHERE `entry` = 187882;
