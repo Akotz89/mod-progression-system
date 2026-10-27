@@ -8,6 +8,31 @@
 #include "Config.h"
 #include "ScriptMgr.h"
 
+#include <array>
+#include <string>
+
+namespace ProgressionSystem
+{
+struct SharedPhaseSnapshot
+{
+    bool enabled = false;
+    bool policyValid = false;
+    std::string phaseId;
+    uint8 phaseLevelCeiling = 0;
+    std::string policyConfigDigest;
+};
+
+// A read-only view of the exact upstream bracket configuration. The adapter
+// does not authorize player actions and does not dispatch PlayerScript hooks.
+[[nodiscard]] SharedPhaseSnapshot GetSharedPhaseSnapshot();
+struct QuestSourcePolicyFacts
+{
+    bool templateKnown{false}, configured{false}, ready{false}, templateAllowed{false};
+};
+// Static source/template policy only; never an actor CanTake/Add/Reward result or script dispatch.
+[[nodiscard]] QuestSourcePolicyFacts ReadQuestSourcePolicy(uint32 questId);
+}
+
 #define PROGRESSION_BRACKET_MAX 39
 std::array<std::string, PROGRESSION_BRACKET_MAX> const ProgressionBracketsNames =
 {

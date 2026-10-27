@@ -45,13 +45,15 @@ void AddBracket_80_4_A_Scripts();
 void AddBracket_80_4_B_Scripts();
 void AddBracket_Custom_Scripts();
 void AddSC_progression_module_commandscript();
-void AddSC_shared_phase_gate();
+void AddSC_progression_system_shared_phase_snapshot();
+void AddSC_progression_system_shared_phase_gate();
 
 void Addmod_progression_systemScripts()
 {
     AddProgressionSystemScripts();
     AddSC_progression_module_commandscript();
-    AddSC_shared_phase_gate();
+    AddSC_progression_system_shared_phase_snapshot();
+    AddSC_progression_system_shared_phase_gate();
 
     if (!sConfigMgr->GetOption<bool>("ProgressionSystem.LoadScripts", true))
         return;
