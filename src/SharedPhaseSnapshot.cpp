@@ -9,6 +9,8 @@
 #include "Util.h"
 
 #include <string>
+#include <mutex>
+#include <utility>
 
 namespace
 {
@@ -16,6 +18,7 @@ constexpr char FIRST_PHASE_ID[] = "1_19";
 constexpr uint8 FIRST_PHASE_LEVEL_CEILING = 19;
 
 ProgressionSystem::SharedPhaseSnapshot CurrentSnapshot;
+std::mutex SnapshotMutex;
 
 void RefreshSharedPhaseSnapshot()
 {
@@ -45,11 +48,17 @@ void RefreshSharedPhaseSnapshot()
     // explicitly enabled and name the phase it claims to enforce before any
     // action hook is permitted to rely on this snapshot.
     bool const exactGateProfile = gateEnabled && configuredPhase == FIRST_PHASE_ID;
-    CurrentSnapshot.enabled = loadScripts && loadDatabase && gateEnabled;
-    CurrentSnapshot.policyValid = CurrentSnapshot.enabled && exactGateProfile && exactFirstPhaseProfile;
-    CurrentSnapshot.phaseId = FIRST_PHASE_ID;
-    CurrentSnapshot.phaseLevelCeiling = CurrentSnapshot.policyValid ? FIRST_PHASE_LEVEL_CEILING : 0;
-    CurrentSnapshot.policyConfigDigest = ByteArrayToHexStr(Acore::Crypto::SHA256::GetDigestOf(canonicalConfig));
+    ProgressionSystem::SharedPhaseSnapshot next;
+    next.enabled = loadScripts && loadDatabase && gateEnabled;
+    next.policyValid = next.enabled && exactGateProfile && exactFirstPhaseProfile;
+    next.phaseId = FIRST_PHASE_ID;
+    next.phaseLevelCeiling = next.policyValid ? FIRST_PHASE_LEVEL_CEILING : 0;
+    next.policyConfigDigest = ByteArrayToHexStr(Acore::Crypto::SHA256::GetDigestOf(canonicalConfig));
+    {
+        std::lock_guard<std::mutex> lock(SnapshotMutex);
+        next.revision = CurrentSnapshot.revision + 1;
+        CurrentSnapshot = std::move(next);
+    }
 }
 
 class progression_system_shared_phase_snapshot_worldscript final : public WorldScript
@@ -69,6 +78,7 @@ public:
 
 ProgressionSystem::SharedPhaseSnapshot ProgressionSystem::GetSharedPhaseSnapshot()
 {
+    std::lock_guard<std::mutex> lock(SnapshotMutex);
     return CurrentSnapshot;
 }
 

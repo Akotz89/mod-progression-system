@@ -20,6 +20,7 @@ struct SharedPhaseSnapshot
     std::string phaseId;
     uint8 phaseLevelCeiling = 0;
     std::string policyConfigDigest;
+    uint64 revision = 0;
 };
 
 // A read-only view of the exact upstream bracket configuration. The adapter
